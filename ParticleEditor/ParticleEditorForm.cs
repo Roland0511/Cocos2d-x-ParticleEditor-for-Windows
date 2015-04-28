@@ -301,7 +301,7 @@ namespace ParticleEditor
             //e.Location.x;
             if (isMouseDown)
             {
-                mDll.Invoke<MMouseDraged, bool>(e.X / 2 - 100, -e.Y / 2 + 586/2 + 189/2);
+                mDll.Invoke<MMouseDraged, bool>((float)(e.X / 2.4 - 40), (float)(-e.Y / 2.4 + 352));
             }
         }
 

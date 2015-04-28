@@ -390,7 +390,7 @@
             this.MainMenuStrip = this.mMenuStrip;
             this.Name = "ParticleEditorForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Cocos2d Particle Editor V2.1";
+            this.Text = "Cocos2d Particle Editor V2.2";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ParticleEditorFormFormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ParticleEditorFormFormClosed);
