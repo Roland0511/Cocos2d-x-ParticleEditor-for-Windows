@@ -13,8 +13,9 @@ extern "C"
 	MEDUSA_EXPORT_API bool MInitializeApplication(HWND hwnd);
 	MEDUSA_EXPORT_API bool MGameLoop(float interval);
 
+	MEDUSA_EXPORT_API bool MMouseDraged(float x, float y);
 
-	MEDUSA_EXPORT_API bool MParticleChanged(float scale, bool isBackgroundMove,float angle,float angleVar,int destBlendFunc,int srcBlendFunc,float duration,float emissionRate,int emiiterMode,
+	MEDUSA_EXPORT_API bool MParticleChanged(float scale, bool isBackgroundMove, int backgroundMoveSpeed, float angle, float angleVar, int destBlendFunc, int srcBlendFunc, float duration, float emissionRate, int emiiterMode,
 		GLbyte endColorR,GLbyte endColorG,GLbyte endColorB,GLbyte endColorA,
 		GLbyte endColorVarR,GLbyte endColorVarG,GLbyte endColorVarB,GLbyte endColorVarA,
 		float endRadius,float endRadiusVar,

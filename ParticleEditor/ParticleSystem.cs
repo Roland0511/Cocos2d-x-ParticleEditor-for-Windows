@@ -8,7 +8,6 @@ using System.Linq;
 using System.Text;
 using System.Xml;
 using ICSharpCode.SharpZipLib.Zip.Compression.Streams;
-using ICSharpCode.SharpZipLib.Zip.Compression.Streams;
 
 namespace ParticleEditor
 {
@@ -61,6 +60,7 @@ namespace ParticleEditor
         {
             TexturePath = String.Empty;
             IsBackgroundMove = true;
+            BackgroundMoveSpeed = 1;
             Scale = 1.0f;
 
             DestBlendFunc = BlendFunc.GL_ONE_MINUS_SRC_ALPHA;
@@ -214,6 +214,9 @@ namespace ParticleEditor
 
         [CategoryAttribute("编辑器"), DescriptionAttribute("背景图片是否移动")]
         public bool IsBackgroundMove { get; set; }
+
+        [CategoryAttribute("编辑器"), DescriptionAttribute("背景图片移动速度")]
+        public int BackgroundMoveSpeed { get; set; }
 
         [CategoryAttribute("编辑器"), DescriptionAttribute("画布缩放大小")]
         public float Scale { get; set; }

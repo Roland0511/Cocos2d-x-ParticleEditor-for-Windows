@@ -18,7 +18,7 @@ public:
 	// implement the "static node()" method manually
 	 CREATE_FUNC(HelloWorld);
 
-	static void HelloWorld::ChangeParticle(float scale,bool isBackgroundMove,float angle,float angleVar,int destBlendFunc,int srcBlendFunc,float duration,float emissionRate,int emiiterMode,
+	 static void HelloWorld::ChangeParticle(float scale, bool isBackgroundMove, int backgroundMoveSpeed, float angle, float angleVar, int destBlendFunc, int srcBlendFunc, float duration, float emissionRate, int emiiterMode,
 		GLbyte endColorR,GLbyte endColorG,GLbyte endColorB,GLbyte endColorA,
 		GLbyte endColorVarR,GLbyte endColorVarG,GLbyte endColorVarB,GLbyte endColorVarA,
 		float endRadius,float endRadiusVar,
@@ -43,6 +43,7 @@ public:
 		unsigned int totalParticles
 		);
 
+	static void HelloWorld::moveParticle(float x,float y);
 	static CCParticleSystem* mEmiiter;
 	static CCSprite* mBackground;
 	static bool mIsBackgroundMove;

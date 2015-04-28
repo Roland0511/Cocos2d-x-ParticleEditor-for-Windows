@@ -37,10 +37,10 @@ bool HelloWorld::init()
 	mBackground->setPosition(ccp(size.width/2,size.height/2));
 
 	this->addChild(mBackground,1,1);
-	CCActionInterval* move1 = CCMoveBy::create(4, CCPointMake(100,0) );
-	CCActionInterval* move2 = CCMoveBy::create(4, CCPointMake(0,100) );
-	CCActionInterval* move3 = CCMoveBy::create(4, CCPointMake(-100,0) );
-	CCActionInterval* move4 = CCMoveBy::create(4, CCPointMake(0,-100) );
+	CCActionInterval* move1 = CCMoveBy::create(1, CCPointMake(100,0) );
+	CCActionInterval* move2 = CCMoveBy::create(1, CCPointMake(0,100) );
+	CCActionInterval* move3 = CCMoveBy::create(1, CCPointMake(-100,0) );
+	CCActionInterval* move4 = CCMoveBy::create(1, CCPointMake(0,-100) );
 
 	CCFiniteTimeAction* seq = CCSequence::create(move1, move2, move3,move4,NULL);
 	mBackground->runAction( CCRepeatForever::create((CCActionInterval*)seq) );
@@ -58,7 +58,12 @@ bool HelloWorld::init()
 	return true;
 }
 
-void HelloWorld::ChangeParticle(float scale,bool isBackgroundMove,float angle,float angleVar,int destBlendFunc,int srcBlendFunc,float duration,float emissionRate,int emiiterMode,
+void HelloWorld::moveParticle(float x, float y)
+{
+	mEmiiter->setPosition(ccp(x, y));
+}
+
+void HelloWorld::ChangeParticle(float scale, bool isBackgroundMove, int backgroundMoveSpeed, float angle, float angleVar, int destBlendFunc, int srcBlendFunc, float duration, float emissionRate, int emiiterMode,
 	GLbyte endColorR,GLbyte endColorG,GLbyte endColorB,GLbyte endColorA,
 	GLbyte endColorVarR,GLbyte endColorVarG,GLbyte endColorVarB,GLbyte endColorVarA,
 	float endRadius,float endRadiusVar,
@@ -107,8 +112,8 @@ void HelloWorld::ChangeParticle(float scale,bool isBackgroundMove,float angle,fl
 		mBackground->addChild(mEmiiter,1);
 	}
 
-	if (isBackgroundMove!=mIsBackgroundMove)
-	{
+	//if (isBackgroundMove!=mIsBackgroundMove)
+	//{
 		mIsBackgroundMove=isBackgroundMove;
 
 
@@ -117,15 +122,15 @@ void HelloWorld::ChangeParticle(float scale,bool isBackgroundMove,float angle,fl
 
 		if (mIsBackgroundMove)
 		{
-			CCActionInterval* move1 = CCMoveBy::create(4, CCPointMake(100,0) );
-			CCActionInterval* move2 = CCMoveBy::create(4, CCPointMake(0,100) );
-			CCActionInterval* move3 = CCMoveBy::create(4, CCPointMake(-100,0) );
-			CCActionInterval* move4 = CCMoveBy::create(4, CCPointMake(0,-100) );
+			CCActionInterval* move1 = CCMoveBy::create(1.0 / backgroundMoveSpeed, CCPointMake(100,0) );
+			CCActionInterval* move2 = CCMoveBy::create(1.0 / backgroundMoveSpeed, CCPointMake(0,100) );
+			CCActionInterval* move3 = CCMoveBy::create(1.0 / backgroundMoveSpeed, CCPointMake(-100,0) );
+			CCActionInterval* move4 = CCMoveBy::create(1.0 / backgroundMoveSpeed, CCPointMake(0,-100) );
 
 			CCFiniteTimeAction* seq = CCSequence::create(move1, move2, move3,move4,NULL);
 			mBackground->runAction( CCRepeatForever::create((CCActionInterval*)seq) );
 		}
-	}
+	//}
 
 	CCTexture2D *tex = NULL;
 
@@ -262,6 +267,8 @@ void HelloWorld::ChangeParticle(float scale,bool isBackgroundMove,float angle,fl
 
 	mEmiiter->resetSystem();
 }
+
+
 
 bool HelloWorld::mIsBackgroundMove;
 

@@ -17,8 +17,9 @@ namespace ParticleEditor
         public delegate bool MGameCleanUp();
         public delegate bool MGameLoop(float interval);
 
+        public delegate bool MMouseDraged(float x, float y);
 
-        public delegate bool MParticleChanged(float scale, bool isBackgroundMove, float angle, float angleVar, int destBlendFunc, int srcBlendFunc, float duration, float emissionRate, int emiiterMode,
+        public delegate bool MParticleChanged(float scale, bool isBackgroundMove,int backgroundMoveSpeed, float angle, float angleVar, int destBlendFunc, int srcBlendFunc, float duration, float emissionRate, int emiiterMode,
         byte endColorR, byte endColorG, byte endColorB, byte endColorA,
         byte endColorVarR, byte endColorVarG, byte endColorVarB, byte endColorVarA,
         float endRadius, float endRadiusVar,
@@ -48,11 +49,14 @@ namespace ParticleEditor
         private ParticleSystem mParticleSystem = new ParticleSytstemFire();
         private string mFilePath = String.Empty;
         private bool mIsBackgroundMove; //keep not changes
+        private int mbackgroundMoveSpeed;
+        private bool isMouseDown = false;
 
         public ParticleEditorForm()
         {
             InitializeComponent();
-            mIsBackgroundMove = true;
+            mIsBackgroundMove = false;
+            mbackgroundMoveSpeed = 1;
         }
 
         private void FormLoad(object sender, EventArgs e)
@@ -84,9 +88,11 @@ namespace ParticleEditor
         private void PropertyGridPropertyValueChanged(object s, PropertyValueChangedEventArgs e)
         {
             mIsBackgroundMove = mParticleSystem.IsBackgroundMove;
+            mbackgroundMoveSpeed = mParticleSystem.BackgroundMoveSpeed;
+
             mPlayToolStripButton.Enabled = !mParticleSystem.IsLoop;
 
-            mDll.Invoke<MParticleChanged, bool>(mParticleSystem.Scale,mParticleSystem.IsBackgroundMove, mParticleSystem.Angle, mParticleSystem.AngleVar, (int)mParticleSystem.DestBlendFunc, (int)mParticleSystem.SrcBlendFunc,
+            mDll.Invoke<MParticleChanged, bool>(mParticleSystem.Scale,mParticleSystem.IsBackgroundMove,mParticleSystem.BackgroundMoveSpeed, mParticleSystem.Angle, mParticleSystem.AngleVar, (int)mParticleSystem.DestBlendFunc, (int)mParticleSystem.SrcBlendFunc,
                 mParticleSystem.Duration, mParticleSystem.EmissionRate, (int)mParticleSystem.Mode,
                 mParticleSystem.EndColor.R, mParticleSystem.EndColor.G, mParticleSystem.EndColor.B, mParticleSystem.EndColor.A,
                 mParticleSystem.EndColorVar.R, mParticleSystem.EndColorVar.G, mParticleSystem.EndColorVar.B, mParticleSystem.EndColorVar.A,
@@ -267,6 +273,7 @@ namespace ParticleEditor
         private void UpdateUI()
         {
             mParticleSystem.IsBackgroundMove = mIsBackgroundMove;
+            mParticleSystem.BackgroundMoveSpeed = mbackgroundMoveSpeed;
             mPlayToolStripButton.Enabled = !mParticleSystem.IsLoop;
             mPropertyGrid.SelectedObject = mParticleSystem;
             PropertyGridPropertyValueChanged(null, null);
@@ -277,5 +284,28 @@ namespace ParticleEditor
         {
             PropertyGridPropertyValueChanged(null, null);
         }
+
+
+        private void conver_panel_MouseDown(object sender, MouseEventArgs e)
+        {
+            isMouseDown = true;
+        }
+
+        private void conver_panel_MouseUp(object sender, MouseEventArgs e)
+        {
+            isMouseDown = false;
+        }
+
+        private void conver_panel_MouseMove(object sender, MouseEventArgs e)
+        {
+            //e.Location.x;
+            if (isMouseDown)
+            {
+                mDll.Invoke<MMouseDraged, bool>(e.X / 2 - 100, -e.Y / 2 + 586/2 + 189/2);
+            }
+        }
+
+
+        
     }
 }

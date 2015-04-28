@@ -46,8 +46,12 @@ extern "C"
 		return true;
 	}
 
-
-	MEDUSA_EXPORT_API bool MParticleChanged(float scale,bool isBackgroundMove,float angle,float angleVar,int destBlendFunc,int srcBlendFunc,float duration,float emissionRate,int emiiterMode,
+	MEDUSA_EXPORT_API bool MMouseDraged(float x, float y)
+	{
+		HelloWorld::moveParticle(x, y);
+		return true;
+	}
+	MEDUSA_EXPORT_API bool MParticleChanged(float scale, bool isBackgroundMove, int backgroundMoveSpeed, float angle, float angleVar, int destBlendFunc, int srcBlendFunc, float duration, float emissionRate, int emiiterMode,
 		GLbyte endColorR,GLbyte endColorG,GLbyte endColorB,GLbyte endColorA,
 		GLbyte endColorVarR,GLbyte endColorVarG,GLbyte endColorVarB,GLbyte endColorVarA,
 		float endRadius,float endRadiusVar,
@@ -72,7 +76,7 @@ extern "C"
 		unsigned int totalParticles
 		)
 	{
-		HelloWorld::ChangeParticle(scale, isBackgroundMove,angle,angleVar,destBlendFunc,srcBlendFunc,duration,emissionRate,emiiterMode,
+		HelloWorld::ChangeParticle(scale, isBackgroundMove, backgroundMoveSpeed, angle, angleVar, destBlendFunc, srcBlendFunc, duration, emissionRate, emiiterMode,
 			endColorR,endColorG,endColorB,endColorA,
 			endColorVarR,endColorVarG,endColorVarB,endColorVarA,
 			endRadius,endRadiusVar,
