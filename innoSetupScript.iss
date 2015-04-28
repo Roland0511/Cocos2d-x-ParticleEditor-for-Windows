@@ -21,7 +21,7 @@ AppSupportURL={#MyAppURL}
 AppUpdatesURL={#MyAppURL}
 DefaultDirName={pf}\{#MyAppName}
 DefaultGroupName={#MyAppName}
-OutputBaseFilename=particle_editor_setup
+OutputBaseFilename=particle-editor-v2.2-setup
 Compression=lzma
 SolidCompression=yes
 
