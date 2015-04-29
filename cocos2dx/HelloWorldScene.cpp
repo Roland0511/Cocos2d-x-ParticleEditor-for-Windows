@@ -37,13 +37,13 @@ bool HelloWorld::init()
 	mBackground->setPosition(ccp(size.width/2,size.height/2));
 
 	this->addChild(mBackground,1,1);
-	CCActionInterval* move1 = CCMoveBy::create(1, CCPointMake(100,0) );
+	/*CCActionInterval* move1 = CCMoveBy::create(1, CCPointMake(100,0) );
 	CCActionInterval* move2 = CCMoveBy::create(1, CCPointMake(0,100) );
 	CCActionInterval* move3 = CCMoveBy::create(1, CCPointMake(-100,0) );
 	CCActionInterval* move4 = CCMoveBy::create(1, CCPointMake(0,-100) );
 
 	CCFiniteTimeAction* seq = CCSequence::create(move1, move2, move3,move4,NULL);
-	mBackground->runAction( CCRepeatForever::create((CCActionInterval*)seq) );
+	mBackground->runAction( CCRepeatForever::create((CCActionInterval*)seq) );*/
 
 	mEmiiter=new CCParticleSun();
 
@@ -53,8 +53,8 @@ bool HelloWorld::init()
 	CCSize s = CCDirector::sharedDirector()->getWinSize();
 	
 	mBackground->addChild(mEmiiter,1);
-	mEmiiter->setPosition(ccp(size.width/2,size.height/2));
-	mIsBackgroundMove=true;
+	//mEmiiter->setPosition(ccp(size.width/2,size.height/2));
+	mIsBackgroundMove=false;
 	return true;
 }
 
@@ -94,7 +94,7 @@ void HelloWorld::ChangeParticle(float scale, bool isBackgroundMove, int backgrou
 		return;
 	}
 
-	mBackground->setScale(scale);
+	//mBackground->setScale(scale);
 
 	CCSize size= CCDirector::sharedDirector()->getWinSize();
 
@@ -266,6 +266,10 @@ void HelloWorld::ChangeParticle(float scale, bool isBackgroundMove, int backgrou
 	mEmiiter->setTotalParticles(totalParticles);
 
 	mEmiiter->resetSystem();
+
+	CCEGLView* eglView = CCEGLView::sharedOpenGLView();
+
+	eglView->setFrameZoomFactor(1.f * scale);
 }
 
 

@@ -234,9 +234,13 @@ namespace ParticleEditor
 
         public void SaveTo(string filePath)
         {
+            if (File.Exists(filePath))
+            {
+                File.Delete(filePath);
+            }
             using (FileStream fileStream = new FileStream(filePath, FileMode.OpenOrCreate))
             {
-
+                
                 using (XmlTextWriter writer = new XmlTextWriter(fileStream, Encoding.UTF8))
                 {
                     writer.Formatting = Formatting.Indented;
@@ -352,6 +356,8 @@ namespace ParticleEditor
                     }
 
                     writer.WriteEndElement();
+                    writer.WriteEndElement();
+                    writer.Close();
                 }
                 
                 fileStream.Close();

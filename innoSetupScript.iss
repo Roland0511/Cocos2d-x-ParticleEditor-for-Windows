@@ -22,6 +22,7 @@ AppUpdatesURL={#MyAppURL}
 DefaultDirName={pf}\{#MyAppName}
 DefaultGroupName={#MyAppName}
 OutputBaseFilename=particle-editor-v2.2-setup
+OutputDir=Bin
 Compression=lzma
 SolidCompression=yes
 
@@ -32,8 +33,8 @@ Name: "chinesesimp"; MessagesFile: "compiler:Default.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked; OnlyBelowVersion: 0,6.1
 
 [Files]
-Source: "D:\work\Knight\ParticleEditor\Bin\ParticleEditor V2.2\ParticleEditor.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "D:\work\Knight\ParticleEditor\Bin\ParticleEditor V2.2\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "Release.win32\ParticleEditor.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Release.win32\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; 注意: 不要在任何共享系统文件上使用“Flags: ignoreversion”
 
 [Icons]
